@@ -1,12 +1,12 @@
 services:
   pi-coding-agent:
-    image: pi-coding-agent:latest
+    image: pi-coding-agent:${VERSION}
     build:
       dockerfile: Dockerfile
       context: .
       args:
-        VERSION: 0.31.0
-        CHECKSUM: sha256:309640a9970124e50d18dc81e2dae8c8d5af1cd5bd4a94de111fd93974590167
+        VERSION: ${VERSION}
+        CHECKSUM: ${CHECKSUM}
     volumes:
       - type: volume
         source: pi-data
