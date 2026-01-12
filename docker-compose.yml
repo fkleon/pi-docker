@@ -7,6 +7,8 @@ services:
       args:
         VERSION: ${VERSION}
         CHECKSUM: ${CHECKSUM}
+    environment:
+      PI_SKIP_VERSION_CHECK: 1
     volumes:
       - type: volume
         source: pi-data
