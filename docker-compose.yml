@@ -1,9 +1,11 @@
+
+
 services:
-  pi-coding-agent:
+  pi-coding-agent: &default-agent
     image: pi-coding-agent:${VERSION}
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ./docker/
       args:
         VERSION: ${VERSION}
         CHECKSUM: ${CHECKSUM}
@@ -14,6 +16,26 @@ services:
         source: pi-data
         target: /home/user/.pi
     tty: true
+
+  python-agent:
+    <<: *default-agent
+    image: pi-python-agent:${VERSION}
+    build:
+      dockerfile: Dockerfile.dev
+      target: python-agent
+      context: ./docker/
+      args:
+        VERSION: ${VERSION}
+
+  go-agent:
+    <<: *default-agent
+    image: pi-go-agent:${VERSION}
+    build:
+      dockerfile: Dockerfile.dev
+      target: go-agent
+      context: ./docker/
+      args:
+        VERSION: ${VERSION}
 
 volumes:
   pi-data:
