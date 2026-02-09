@@ -1,7 +1,7 @@
 
 
 services:
-  pi-coding-agent: &default-agent
+  pi-agent: &default-agent
     image: pi-coding-agent:${VERSION}
     build:
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
         CHECKSUM: ${CHECKSUM}
     environment:
       PI_SKIP_VERSION_CHECK: 1
-    volumes:
+    volumes: &default-volumes
       - type: volume
         source: pi-data
         target: /home/user/.pi
