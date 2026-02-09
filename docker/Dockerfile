@@ -10,7 +10,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # tools
 RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends git curl ca-certificates dnsutils && \
+  DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y --no-install-recommends \
+    git curl ca-certificates dnsutils \
+    ripgrep fd-find && \
+  ln -s /bin/fdfind /bin/fd && \
   rm -rf /var/lib/apt/lists/*
 
 # pi-coding-agent
