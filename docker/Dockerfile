@@ -27,6 +27,8 @@ RUN mkdir /opt/pi-coding-agent && \
   ln -s /opt/pi-coding-agent/pi /usr/bin/pi && \
   rm /opt/pi-linux-x64.tar.gz
 
+ENV PI_SKIP_VERSION_CHECK=1
+
 USER $USERNAME
 
 RUN mkdir /home/${USERNAME}/.pi
