@@ -10,7 +10,7 @@ services:
         VERSION: ${VERSION}
         CHECKSUM: ${CHECKSUM}
     environment:
-      PI_SKIP_VERSION_CHECK: 1
+      PI_OFFLINE: 1
     volumes: &default-volumes
       - type: volume
         source: pi-data
