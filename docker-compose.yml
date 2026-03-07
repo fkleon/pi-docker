@@ -2,7 +2,7 @@
 
 services:
   pi-agent: &default-agent
-    image: pi-coding-agent:${VERSION}
+    image: pi-agent:${VERSION}
     build:
       dockerfile: Dockerfile
       context: ./docker/
@@ -14,7 +14,7 @@ services:
     volumes: &default-volumes
       - type: volume
         source: pi-data
-        target: /home/user/.pi
+        target: /root/.pi
     tty: true
 
   python-agent:

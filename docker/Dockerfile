@@ -1,13 +1,5 @@
 FROM debian:trixie-slim
 
-# app user
-ARG USERNAME=user
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
-
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-
 # tools
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
@@ -29,10 +21,8 @@ RUN mkdir /opt/pi-coding-agent && \
 
 ENV PI_SKIP_VERSION_CHECK=1
 
-USER $USERNAME
+RUN mkdir /root/.pi
+VOLUME [ "/root/.pi" ]
 
-RUN mkdir /home/${USERNAME}/.pi
-VOLUME [ "/home/${USERNAME}/.pi" ]
-
-WORKDIR /home/${USERNAME}
+WORKDIR /root
 ENTRYPOINT ["/usr/bin/pi"]
