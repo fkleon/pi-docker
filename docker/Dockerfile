@@ -1,4 +1,6 @@
-FROM debian:trixie-slim
+# Vanilla pi-coding-agent image, without any language-specific tools.
+# Used as a base for language-specific images.
+FROM debian:trixie-slim as pi-agent
 
 # tools
 RUN apt-get update && \
@@ -26,3 +28,20 @@ VOLUME [ "/root/.pi" ]
 
 WORKDIR /root
 ENTRYPOINT ["/usr/bin/pi"]
+
+# Golang agent
+FROM pi-agent as go-agent
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends golang && \
+  rm -rf /var/lib/apt/lists/*
+
+# Python agent
+FROM pi-agent as python-agent
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-dev python3-pip && \
+  rm -rf /var/lib/apt/lists/*
+
+ARG UV_VERSION=0.10.6
+COPY --from=ghcr.io/astral-sh/uv:${UV_VERSION} /uv /uvx /bin/

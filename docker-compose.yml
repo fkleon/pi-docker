@@ -1,41 +1,38 @@
-
-
 services:
-  pi-agent: &default-agent
+  pi-agent:
     image: pi-agent:${VERSION}
     build:
       dockerfile: Dockerfile
+      target: pi-agent
       context: ./docker/
       args:
         VERSION: ${VERSION}
         CHECKSUM: ${CHECKSUM}
     environment:
       PI_OFFLINE: 1
-    volumes: &default-volumes
+    tty: true
+    volumes:
       - type: volume
         source: pi-data
         target: /root/.pi
-    tty: true
+      - type: bind
+        source: ./projects
+        target: /projects
+    working_dir: /projects
 
   python-agent:
-    <<: *default-agent
     image: pi-python-agent:${VERSION}
+    extends:
+      service: pi-agent
     build:
-      dockerfile: Dockerfile.dev
       target: python-agent
-      context: ./docker/
-      args:
-        VERSION: ${VERSION}
 
   go-agent:
-    <<: *default-agent
     image: pi-go-agent:${VERSION}
+    extends:
+      service: pi-agent
     build:
-      dockerfile: Dockerfile.dev
       target: go-agent
-      context: ./docker/
-      args:
-        VERSION: ${VERSION}
 
 volumes:
   pi-data:
