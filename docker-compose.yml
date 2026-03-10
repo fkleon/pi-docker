@@ -10,6 +10,7 @@ services:
         CHECKSUM: ${CHECKSUM}
     environment:
       PI_OFFLINE: 1
+    env_file: agent.env
     tty: true
     volumes:
       - type: volume
