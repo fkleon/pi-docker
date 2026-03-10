@@ -26,6 +26,9 @@ ENV PI_SKIP_VERSION_CHECK=1
 RUN mkdir /root/.pi
 VOLUME [ "/root/.pi" ]
 
+# Agent configuration
+COPY pi/ /root/.pi/agent/
+
 WORKDIR /root
 ENTRYPOINT ["/usr/bin/pi"]
 
