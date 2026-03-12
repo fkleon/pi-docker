@@ -39,6 +39,12 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends golang && \
   rm -rf /var/lib/apt/lists/*
 
+ARG GOLANGCI_LINT_VERSION=2.11.3
+ARG GOLANGCI_LINT_CHECKSUM=sha256:02bd958dd1444a70837f6ee2bf5ff39222d6b80a542f257f4c10bd144498426d
+ADD --checksum=${CHECKSUM} https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCI_LINT_VERSION}/golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64.deb /opt/
+RUN dpkg -i /opt/golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64.deb && \
+  rm /opt/golangci-lint-${GOLANGCI_LINT_VERSION}-linux-amd64.deb
+
 # Python agent
 FROM pi-agent AS python-agent
 
