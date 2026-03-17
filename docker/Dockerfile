@@ -1,6 +1,6 @@
 # Vanilla pi-coding-agent image, without any language-specific tools.
 # Used as a base for language-specific images.
-FROM debian:trixie-slim AS pi-agent
+FROM debian:sid-slim AS pi-agent
 
 # tools
 RUN apt-get update && \
