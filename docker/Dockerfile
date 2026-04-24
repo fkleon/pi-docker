@@ -39,7 +39,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends golang && \
   rm -rf /var/lib/apt/lists/*
 
-ARG GOLANGCI_LINT_VERSION=2.11.4
+ARG GOLANGCI_LINT_VERSION=2.11
 COPY --from=golangci/golangci-lint:v${GOLANGCI_LINT_VERSION}-alpine /usr/bin/golangci-lint /bin/
 
 # Python agent
