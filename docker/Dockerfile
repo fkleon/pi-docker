@@ -49,5 +49,5 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-dev python3-pip && \
   rm -rf /var/lib/apt/lists/*
 
-ARG UV_VERSION=0.11.2
+ARG UV_VERSION=0.11
 COPY --from=ghcr.io/astral-sh/uv:${UV_VERSION} /uv /uvx /bin/
