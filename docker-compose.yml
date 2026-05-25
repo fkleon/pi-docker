@@ -35,5 +35,12 @@ services:
     build:
       target: go-agent
 
+  node-agent:
+    image: pi-node-agent:${VERSION}
+    extends:
+      service: pi-agent
+    build:
+      target: node-agent
+
 volumes:
   pi-data:

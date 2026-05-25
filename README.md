@@ -19,6 +19,7 @@ Multiple container images can be built from this repository; all using a Debian 
 - `pi-agent`: A container with just the vanilla pi agent.
 - `python-agent`: A container with Python development tooling, including `uv`.
 - `go-agent`: A container with Golang development tooling.
+- `node-agent`: A container with Node.js development tooling.
 
 ### How to build
 

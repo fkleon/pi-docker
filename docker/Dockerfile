@@ -51,3 +51,10 @@ RUN apt-get update && \
 
 ARG UV_VERSION=0.11
 COPY --from=ghcr.io/astral-sh/uv:${UV_VERSION} /uv /uvx /bin/
+
+# Node agent
+FROM pi-agent AS node-agent
+
+ARG NODE_VERSION=24
+COPY --from=node:24-trixie-slim /usr/local/bin /usr/local/bin
+COPY --from=node:24-trixie-slim /usr/local/lib /usr/local/lib
