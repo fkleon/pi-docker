@@ -27,7 +27,7 @@ RUN mkdir /root/.pi
 VOLUME [ "/root/.pi" ]
 
 # Agent configuration
-COPY pi/ /root/.pi/agent/
+COPY pi/agent/ /root/.pi/agent/
 
 WORKDIR /root
 ENTRYPOINT ["/usr/bin/pi"]
