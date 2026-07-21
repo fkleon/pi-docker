@@ -12,6 +12,7 @@ services:
       PI_OFFLINE: 1
     env_file: agent.env
     tty: true
+    userns_mode: host
     volumes:
       - type: volume
         source: pi-data
