@@ -58,3 +58,11 @@ FROM pi-agent AS node-agent
 ARG NODE_VERSION=24
 COPY --from=node:24-trixie-slim /usr/local/bin /usr/local/bin
 COPY --from=node:24-trixie-slim /usr/local/lib /usr/local/lib
+
+# Dart agent
+FROM pi-agent AS dart-agent
+
+ARG DART_VERSION=3.12.2
+COPY --from=dart:${DART_VERSION}-sdk /usr/lib/dart /usr/lib/dart
+
+ENV PATH="/usr/lib/dart/bin:$PATH"

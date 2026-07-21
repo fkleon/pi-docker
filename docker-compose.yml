@@ -43,5 +43,12 @@ services:
     build:
       target: node-agent
 
+  dart-agent:
+    image: pi-dart-agent:${VERSION}
+    extends:
+      service: pi-agent
+    build:
+      target: dart-agent
+
 volumes:
   pi-data:
