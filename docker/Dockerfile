@@ -66,3 +66,12 @@ ARG DART_VERSION=3.12.2
 COPY --from=dart:${DART_VERSION}-sdk /usr/lib/dart /usr/lib/dart
 
 ENV PATH="/usr/lib/dart/bin:$PATH"
+
+# Terraform agent
+FROM pi-agent AS tofu-agent
+
+ARG TOFU_VERSION=1.12
+COPY --from=ghcr.io/opentofu/opentofu:${TOFU_VERSION}-minimal /usr/local/bin/tofu /usr/local/bin/tofu
+
+ARG TFLINT_VERSION=0.64.0
+COPY --from=ghcr.io/terraform-linters/tflint:v${TFLINT_VERSION} /usr/local/bin/tflint /usr/local/bin/tflint

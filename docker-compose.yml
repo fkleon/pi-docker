@@ -50,5 +50,12 @@ services:
     build:
       target: dart-agent
 
+  tofu-agent:
+    image: pi-tofu-agent:${VERSION}
+    extends:
+      service: pi-agent
+    build:
+      target: tofu-agent
+
 volumes:
   pi-data:
