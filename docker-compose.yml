@@ -42,6 +42,8 @@ services:
       service: pi-agent
     build:
       target: node-agent
+      args:
+        NODE_VERSION: 26
 
   dart-agent:
     image: pi-dart-agent:${VERSION}

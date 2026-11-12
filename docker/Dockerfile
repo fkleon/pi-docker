@@ -56,8 +56,8 @@ COPY --from=ghcr.io/astral-sh/uv:${UV_VERSION} /uv /uvx /bin/
 FROM pi-agent AS node-agent
 
 ARG NODE_VERSION=24
-COPY --from=node:24-trixie-slim /usr/local/bin /usr/local/bin
-COPY --from=node:24-trixie-slim /usr/local/lib /usr/local/lib
+COPY --from=node:${NODE_VERSION}-trixie-slim /usr/local/bin /usr/local/bin
+COPY --from=node:${NODE_VERSION}-trixie-slim /usr/local/lib /usr/local/lib
 
 # Dart agent
 FROM pi-agent AS dart-agent
